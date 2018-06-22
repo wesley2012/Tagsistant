@@ -63,21 +63,21 @@ int tagsistant_rename(const char *from, const char *to)
 			if (from_qtree->inode is to_qtree->inode) goto TAGSISTANT_EXIT_OPERATION;
 
 			// 2. preserve original inode
-			tagsistant_querytree_set_inode(to_qtree, from_qtree->inode);
+			//tagsistant_querytree_set_inode(to_qtree, from_qtree->inode);
 
 			// 3. rename the object
-			tagsistant_query(
+			/*tagsistant_query(
 				"update objects set objectname = '%s' where inode = %d",
 				from_qtree->dbi,
 				NULL, NULL,
 				to_qtree->object_path,
-				from_qtree->inode);
+				from_qtree->inode);*/
 
 			// 4. deletes all the tagging between "from" file and all AND nodes in "from" path
 			tagsistant_querytree_traverse(from_qtree, tagsistant_sql_untag_object, from_qtree->inode);
 
 			// 5. adds all the tags from "to" path
-			tagsistant_querytree_traverse(to_qtree, tagsistant_sql_tag_object, from_qtree->inode);
+			//tagsistant_querytree_traverse(to_qtree, tagsistant_sql_tag_object, from_qtree->inode);
 
 #if TAGSISTANT_ENABLE_AND_SET_CACHE
 			/*
